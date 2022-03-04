@@ -17,45 +17,29 @@ var thirdSquare = document.querySelector("#third-square");
 var fourthSquare = document.querySelector("#fourth-square");
 
 mainSquare.addEventListener("click", changeColor, true);
-
+  
 function changeColor(e){
-    firstSquare.style.backgroundColor = "red";
-    secondSquare.style.backgroundColor = "gold";
-    thirdSquare.style.backgroundColor = "khaki";
-    fourthSquare.style.backgroundColor = "yellow";
+    firstSquare.style.backgroundColor = getRandomColor();
+    secondSquare.style.backgroundColor = getRandomColor();
+    thirdSquare.style.backgroundColor = getRandomColor();
+    fourthSquare.style.backgroundColor = getRandomColor();
 };
 
-// tengo un objeto "colors" con pares key:values tipo diccionario pero not quite porque es javascript
-
-// hacemos una función para encontrar un numero random
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  };
 
+function getRandomProperty(obj) {
+    var keys = Object.keys(obj);
+    return obj[keys[(keys.length * Math.random()) << 0]];
+  };
 
-//ejemplo de color quiz - one html page challenge
+function getRandomColor() {
+    var colorType = getRandomProperty(colors);
+    var colorPos = randomNumber(0, colorType.length - 1);
 
-//   function randomNumberBetween(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-//   }
+    var randomColor = colorType[colorPos];
 
-//   function setButton(id, val) {
-//     var button = document.getElementById("answer-" + id);
-//     button.innerHTML = val;
-//     button.dataset["value"] = val;
-//   }
+    return randomColor;
+  };
 
-//   function getRandomProperty(obj) {
-//     var keys = Object.keys(obj);
-//     return obj[keys[(keys.length * Math.random()) << 0]];
-//   }
-
-//   function setRandomBackgroundColor() {
-//     var colorType = getRandomProperty(colors);
-//     var colorPos = randomNumberBetween(0, colorType.length - 1);
-
-//     body.style.background = colorType[colorPos];
-//     body.dataset["value"] = colorType[colorPos];
-
-//     return [colorType, colorPos];
-//   }
